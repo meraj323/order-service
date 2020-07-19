@@ -9,7 +9,7 @@ pipeline {
         stage('Build') { 
             steps {
                echo 'build started!!'
-               sh "./mvnw clean install -DskipTests"   
+               bat "./mvnw clean install -DskipTests"   
             }
         }
         stage('Test') { 
