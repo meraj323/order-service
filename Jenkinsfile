@@ -10,7 +10,7 @@ pipeline {
         stage('Build') { 
             steps {
                echo 'build started!!'
-               sh "mvn spring-boot:run"
+               sh "./mvnw clean install -DskipTests"
             }
         }
         stage('Test') { 
