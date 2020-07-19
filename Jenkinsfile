@@ -1,8 +1,6 @@
 node {
     stage 'Clone the project'
-    steps {
-        checkout scm
-    }
+      sh checkout scm
     dir('spring-jenkins-pipeline') {
         stage("Compilation and Analysis") {
             parallel 'Compilation': {
