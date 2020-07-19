@@ -6,7 +6,7 @@ pipeline {
             checkout scm
             }
         }
-    dir('spring-jenkins-pipeline') {
+    dir('order-service-pipeline') {
         stage("Compilation and Analysis") {
             parallel 'Compilation': {
                 sh "./mvnw clean install -DskipTests"
