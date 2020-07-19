@@ -1,0 +1,9 @@
+Steps to run spring boot from cmd
+
+1. set the profile:
+
+   set spring.profiles.active=dev, stage or prod
+   
+2. mvn spring-boot:run   
+   
+   

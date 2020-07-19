@@ -1,0 +1,23 @@
+Steps CURL Command GET and POST, PATCH
+
+curl -i --user user:password -H "Accept: application/json" "Content-Type: application/json"  http://192.168.225.137:2222/order-services-api/v1/orders/1234
+
+
+
+POST:
+
+curl -u Meraj:12345678 -H "Content-Type: application/json" -X POST -d {\"username\":\"meraj.ahmad\",\"password\":\"abc\",\"enable\":true,\"authorities\":\"MANAGER\",\"locked\":false} http://localhost:1111/api/users/
+
+
+
+GET:
+
+curl -u Meraj:12345678 -H "Content-Type: application/json" -X GET http://localhost:1111/api/customers/
+
+
+
+POST Order:
+
+curl -u Meraj:12345678 -H "Content-Type: application/json" -X POST -d {\"orderName\":\"test_order1\"} http://localhost:1111/v1/orders
+   
+   

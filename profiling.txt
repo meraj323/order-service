@@ -1,0 +1,33 @@
+Spring Boot Profiling:
+
+How to set the enviorment like dev or stage or prod and activate the profile in Spring Boot??
+
+1. We have to set the enviorment variable or pass the JVM parameter
+   like :
+   
+   Windows:
+   set spring.profiles.active=stage, dev or prod
+   
+   Linux:
+   export spring.profiles.active=stage, dev or prod
+ 
+2. We have to create enviorment specific property file like below
+   
+   application-{profile}.properties
+   e.g:
+   application-dev.properties
+   application-stage.properties
+   application-prod.properties
+
+2. Spring Boot will automaticly pick the respective property file as per the spring.profiles.active=stage, dev or prod which develoepr has setted.
+
+3. No configuration needs to do in maven,, but of you want to activate the profile from maven you can do that,,
+
+4. If developer wants some beans or some configuration to be used in prod or stage enviorment only,, we can do that using @Profile annotation like below
+
+@Profile("dev")
+@Profile("prod")
+or
+@Profile("stage")
+   
+   
