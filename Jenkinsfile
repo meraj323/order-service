@@ -9,7 +9,8 @@ pipeline {
         }
         stage('Build') { 
             steps {
-               echo 'build started!!' 
+               echo 'build started!!'
+               sh "mvn spring-boot:run"
             }
         }
         stage('Test') { 
