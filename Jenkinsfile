@@ -1,12 +1,9 @@
-pipeline {
-    agent any 
-    stages {
-        stage('Checkout code') {
-        steps {
-            checkout scm
-            }
-        }
-    dir('order-service-pipeline') {
+node {
+    stage 'Clone the project'
+    steps {
+        checkout scm
+    }
+    dir('spring-jenkins-pipeline') {
         stage("Compilation and Analysis") {
             parallel 'Compilation': {
                 sh "./mvnw clean install -DskipTests"
@@ -25,6 +22,7 @@ pipeline {
                 }
             }
         }
+        
         stage("Tests and Deployment") {
             parallel 'Unit tests': {
                 stage("Runing unit tests") {
