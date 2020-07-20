@@ -1,5 +1,5 @@
 FROM node:14-alpine
-FROM microsoft/nanoserver
+FROM openjdk:nanoserver
 ADD ./target/order-service-0.0.1-SNAPSHOT.jar app.jar
 #EXPOSE 1111
 #EXPOSE 2222
