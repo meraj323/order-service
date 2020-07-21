@@ -96,8 +96,10 @@ public class OrderController {
 		}
 		
 		@RequestMapping(value = "/v1/orders/{orderId}", method = RequestMethod.PUT)
-		public @ResponseBody OrderDto createOrUpdate(@RequestBody OrderDto orderDto, @PathVariable long orderId) {
-			return null;	
+		public @ResponseBody Order createOrUpdate(@RequestBody OrderDto orderDto, @PathVariable long orderId) {
+			Order order = new Order();
+			order.setOrderName(orderDto.getOrderName());
+			return orderRepository.save(order);	
 		}
 		
 		@RequestMapping(value = "/v1/orders/{orderId}", method = RequestMethod.PATCH)
