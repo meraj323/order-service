@@ -1,5 +1,4 @@
-FROM node:14-alpine
-FROM openjdk:8-windowsservercore
+FROM openjdk:8-jdk-alpine
 ADD target/order-service-0.0.1-SNAPSHOT.jar app.jar
 #EXPOSE 1111
 #EXPOSE 2222
