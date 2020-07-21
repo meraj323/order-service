@@ -205,6 +205,18 @@
                      </profiles>
                </configuration> -->
 			</plugin>
+			<plugin>
+			    <artifactId>maven-surefire-plugin</artifactId>
+			    <version>2.21.0</version>
+			    <!-- <configuration>
+                    <excludes>
+                        <exclude>DataTest.java</exclude>
+                    </excludes>
+                    <includes>
+                        <include>DataCheck.java</include>
+                    </includes>
+                </configuration> -->
+           </plugin>
 		</plugins>
 	</build>
 	

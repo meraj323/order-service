@@ -108,8 +108,10 @@ public class OrderController {
 		}
 		
 		@RequestMapping(value = "/v1/orders/{orderId}", method = RequestMethod.DELETE)
-		public @ResponseBody OrderDto removeOrder(@PathVariable long orderId) {
-			return null;
+		public void removeOrder(@PathVariable String orderId) {
+			Order order = orderRepository.findById(orderId).get();
+			orderRepository.delete(order);
+			return;
 		}
 
 }
