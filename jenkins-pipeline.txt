@@ -1,0 +1,10 @@
+#Jenkins 2 comes with a great feature called Pipelines, which is very extensible when we need to define a continuous integration environment for a project.
+#A Pipeline is another way of defining some Jenkins steps using code, and automate the process of deploying software.
+#It's using a Domain Specific Language(DSL) with two different syntaxes:
+
+#Jenkins Pipeline (or simply "Pipeline") is a suite of plugins which supports implementing and integrating continuous delivery pipelines into Jenkins. ... 
+#The definition of a Jenkins Pipeline is typically written into a text file (called a Jenkinsfile ) which in turn is checked into a project's source control 
+#srepository.
+
+#Declarative Pipeline
+#Scripted Pipeline

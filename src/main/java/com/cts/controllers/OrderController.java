@@ -25,6 +25,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.cts.domain.Order;
 import com.cts.dtos.OrderDto;
 import com.cts.repositories.OrderRepository;
+import com.cts.services.OrderService;
 import com.google.gson.Gson;
 
 /**
@@ -64,54 +65,38 @@ public class OrderController {
 	*/
 	
 	@Autowired
-	OrderRepository orderRepository;
-	
-	 @Autowired
-	 private KafkaTemplate<String, String> kafkaTemplate;
-	 
-	 @Autowired
-	 private Gson gson;
+	OrderService orderService;
 	
 	@RequestMapping(value = "/v1/orders", method = RequestMethod.GET)
 	public @ResponseBody List<Order> findAll() {
-			return orderRepository.findAll();	
+			return orderService.findAll();	
 	}
 	
-		@RequestMapping(value = "/v1/orders/{orderId}", method = RequestMethod.GET , produces = {MediaType.APPLICATION_XML_VALUE,MediaType.APPLICATION_JSON_VALUE})
-		public @ResponseBody Order findOrder(@PathVariable String orderId) {
-//			orderRepository.findById(orderId);
-//			OrderDto orderDto = new OrderDto();
-//			orderDto.setOrderId(11111);
-//			orderDto.setOrderName("test_order");
-//			Optional<Order> order  = orderRepository.findById(orderId).get();
-//			Order ord = order.get();
-			return orderRepository.findById(orderId).get();
-			}
-		
-		@RequestMapping(value = "/v1/orders", method = RequestMethod.POST) 
-		public @ResponseBody ResponseEntity createOrder(@RequestBody Order order) throws InterruptedException, ExecutionException {
-			ListenableFuture<SendResult<String, String>> result = null;
-	        result = kafkaTemplate.send("ordertest", gson.toJson(orderRepository.save(order)));
-			return new ResponseEntity<>(result.get().getProducerRecord().value(), HttpStatus.OK);
+	@RequestMapping(value = "/v1/orders/{orderId}", method = RequestMethod.GET , produces = {MediaType.APPLICATION_XML_VALUE,MediaType.APPLICATION_JSON_VALUE})
+	public @ResponseBody Order findOrder(@PathVariable String orderId) {
+		return orderService.findOrder(orderId);
 		}
 		
-		@RequestMapping(value = "/v1/orders/{orderId}", method = RequestMethod.PUT)
-		public @ResponseBody Order createOrUpdate(@RequestBody OrderDto orderDto, @PathVariable long orderId) {
-			Order order = new Order();
-			order.setOrderName(orderDto.getOrderName());
-			return orderRepository.save(order);	
+	@RequestMapping(value = "/v1/orders", method = RequestMethod.POST) 
+	public @ResponseBody ResponseEntity createOrder(@RequestBody Order order) throws InterruptedException, ExecutionException {
+		return orderService.createOrder(order); 
+				}
+		
+	@RequestMapping(value = "/v1/orders/{orderId}", method = RequestMethod.PUT)
+	public @ResponseBody Order createOrUpdate(@RequestBody OrderDto orderDto, @PathVariable long orderId) {
+		Order order = new Order();
+		order.setOrderName(orderDto.getOrderName());
+		return orderService.createOrUpdate(order);	
 		}
 		
-		@RequestMapping(value = "/v1/orders/{orderId}", method = RequestMethod.PATCH)
-		public @ResponseBody OrderDto partialUpdate(@RequestBody Map<String,String> map,@PathVariable long orderId) {
-			return null;
+	@RequestMapping(value = "/v1/orders/{orderId}", method = RequestMethod.PATCH)
+	public @ResponseBody OrderDto partialUpdate(@RequestBody Map<String,String> map,@PathVariable long orderId) {
+		return null;
 		}
 		
-		@RequestMapping(value = "/v1/orders/{orderId}", method = RequestMethod.DELETE)
-		public void removeOrder(@PathVariable String orderId) {
-			Order order = orderRepository.findById(orderId).get();
-			orderRepository.delete(order);
-			return;
+	@RequestMapping(value = "/v1/orders/{orderId}", method = RequestMethod.DELETE)
+	public void removeOrder(@PathVariable String orderId) {
+		orderService.removeOrder(orderId);
+		return;
 		}
-
 }
