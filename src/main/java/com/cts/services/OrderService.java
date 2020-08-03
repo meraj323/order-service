@@ -3,6 +3,7 @@
  */
 package com.cts.services;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
@@ -37,7 +38,12 @@ public class OrderService {
 	private Gson gson;
 	
 	public List<Order> findAll() {
-		return orderRepository.findAll();
+		Order order = new Order();
+		order.setOrderName("test1");
+		List<Order> list = new ArrayList<Order>();
+		list.add(order);
+		return list;
+		//return orderRepository.findAll();
 	}
 	public Order findOrder(@PathVariable String orderId) {
 		return orderRepository.findById(orderId).get();
@@ -64,5 +70,6 @@ public class OrderService {
 		orderRepository.delete(order);
 		return;
 	}
+	
 
 }
