@@ -5,6 +5,7 @@ FROM maven:3.6.0-jdk-8-slim AS build
 COPY src /home/app/src
 COPY pom.xml /home/app
 RUN mvn -f /home/app/pom.xml clean package
+#RUN mvn sonar:sonar -Dsonar.host.url=http://localhost:9000   -Dsonar.login=the-generated-token
 
 #
 # Package stage

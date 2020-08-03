@@ -6,4 +6,4 @@ Steps to run spring boot from cmd
    
 2. mvn spring-boot:run   
    
-   
+   mvn sonar:sonar -Dsonar.host.url=http://localhost:9000   -Dsonar.login=the-generated-token
